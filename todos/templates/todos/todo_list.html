@@ -1,0 +1,23 @@
+<!-- todos/templates/todos/todo_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Add a task..." required>
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.title }}
+            <a href="{% url 'delete_task' task.id %}">❌</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
